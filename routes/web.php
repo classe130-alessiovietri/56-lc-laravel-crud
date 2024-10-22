@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\Guest\MainController;
+use App\Http\Controllers\Admin\PastaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,41 +17,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $firstName = 'Gino';
-    $lastName = 'Paoli';
+Route::get('/', [MainController::class, 'index'])->name('home');
 
-    /*
-        compact: crea un array associativo le cui chiavi sono le stringhe
-                 che mettiamo tra le parentesi, mentre i valori di tali
-                 chiavi sono i valori delle variabili con i nomi corrispondenti
-                 alle stringhe inserite
+Route::get('/chi-siamo', [MainController::class, 'about'])->name('about');
 
-        compact('firstName', 'lastName')
-         |                                     |
-         V                                     V
 
-         [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-         ]
-    */
+/*
 
-    /*
-        dd: vuol dire dump and die, cioè fai il var_dump (più carino però)
-            e poi stoppa l'esecuzione
-    */
-    // dd(compact('firstName', 'lastName'));
+Se la mia tabella è 'my_resources':
+- il singolare (quindi la mia risorsa) è 'my_resource'
+- il pascal case è 'MyResources'
+- lo snake case è 'my_resources'
+- il model si chiamerà 'MyResource' perché laravel DI DEFAULT va a cercare nel DB una tabella che si chiama come lo snake case AL PLURALE del nome del model
+- il controller si chiamerà 'MyResourceController' PER BEST PRACTICE
 
-    return view('welcome', [
-        'firstName' => $firstName,
-        'lastName' => $lastName,
-    ]);
-    // return view('welcome', compact('firstName', 'lastName'));
-});
+*/
 
-Route::get('/chi-siamo', function () {
-    return view('subpages.about');
-});
+// Route::get('/pastas', [PastaController::class, 'index'])->name('pastas.index');
+// Route::get('/pastas/create', [PastaController::class, 'create'])->name('pastas.create');
+// Route::post('/pastas', [PastaController::class, 'store'])->name('pastas.store');
+// Route::get('/pastas/{id}', [PastaController::class, 'show'])->name('pastas.show');
+// Route::get('/pastas/{id}/edit', [PastaController::class, 'edit'])->name('pastas.edit');
+// Route::put('/pastas/{id}', [PastaController::class, 'update'])->name('pastas.update');
+// Route::delete('/pastas/{id}', [PastaController::class, 'destroy'])->name('pastas.destroy');
 
-// Route::get(PERCORSO CON CUI ARRIVARE ALLA PAGINA, FUNZIONE DI CALLBACK CHE MI CREA LA RISPOSTA DA DARE ALL UTENTE)
+Route::resource('pastas', PastaController::class);
+
+
+
+
+
+
+
+
+// Route::get('/pasta/read/global', [PastaController::class, 'index'])->name('pastas');
+// // Route::get('/pasta/read/global', [PastaController::class, 'index'])->name('pastasglobal');
+// // Route::get('/treni/read/global', [TrainController::class, 'index'])->name('trains');
+// // Route::get('/treni/read/global', [TrainController::class, 'index'])->name('trainsglobal');
+
+// Route::get('/pasta/read/PARAMETRO', [PastaController::class, 'show'])->name('singlepasta');
+
+// Route::get/post('/pasta/create', [PastaController::class, 'create'])->name('createpasta');
+
+// Route::post('/pasta/create/save', [PastaController::class, 'submit'])->name('submitpasta');
+
+/*
+
+DEVO GESTIRE LE PASTE
+- Controller: CrudController / PastaController -> Messo nella cartella: app/Http/Controllers/Admin
+- Quanti URL devo esporre per l'operazione R (READ)? -> 2, quali sono? /pasta/read/PARAMETRO, /pasta/read/global
+- Quanti URL devo esporre per l'operazione C (CREATE)? -> 2, quali sono? /pasta/create (per il form), /pasta/create/save (per la gestione della sottomissione del form)
+
+*/
