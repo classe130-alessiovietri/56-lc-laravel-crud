@@ -30,6 +30,7 @@ Se la mia tabella è 'my_resources':
 - lo snake case è 'my_resources'
 - il model si chiamerà 'MyResource' perché laravel DI DEFAULT va a cercare nel DB una tabella che si chiama come lo snake case AL PLURALE del nome del model
 - il controller si chiamerà 'MyResourceController' PER BEST PRACTICE
+- la cartella delle view della mia risorsa sarà 'my-resources'
 
 */
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+// Models
+use App\Models\Pasta;
+
 class PastaController extends Controller
 {
     /**
@@ -12,7 +15,10 @@ class PastaController extends Controller
      */
     public function index()
     {
-        //
+        // $pastas = Pasta::all();
+        $pastas = Pasta::get();
+
+        return view('pastas.index', compact('pastas'));
     }
 
     /**
