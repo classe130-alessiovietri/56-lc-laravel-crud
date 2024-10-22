@@ -40,13 +40,20 @@ class PastaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Pasta $pasta)
     {
-        // $pasta = Pasta::where('id', $id)->first();
-        $pasta = Pasta::find($id);
-
         return view('pastas.show', compact('pasta'));
     }
+    /*
+        VERSIONE "CANONICA" CON $id STRINGA
+    */
+    // public function show(string $id)
+    // {
+    //     // $pasta = Pasta::where('id', $id)->firstOrFail();
+    //     $pasta = Pasta::findOrFail($id);
+
+    //     return view('pastas.show', compact('pasta'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
