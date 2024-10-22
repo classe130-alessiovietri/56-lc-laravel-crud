@@ -26,7 +26,7 @@ class PastaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pastas.create');
     }
 
     /**
@@ -34,7 +34,19 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $pasta = new Pasta();
+        $pasta->src = $data['src'];
+        $pasta->title = $data['title'];
+        $pasta->type = $data['type'];
+        $pasta->cooking_time = $data['cooking_time'];
+        $pasta->weight = $data['weight'];
+        $pasta->description = $data['description'];
+        $pasta->save();
+
+        return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
+        // return redirect()->route('pastas.index');
     }
 
     /**

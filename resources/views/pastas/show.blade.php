@@ -27,6 +27,8 @@
             {{ $pasta->description }}
         </p>
     </div>
-    <img src="{{ $pasta->src }}" class="card-img-bottom" alt="{{ $pasta->title }}">
+    @if ($pasta->src != null)
+        <img src="{{ $pasta->src }}" class="card-img-bottom" alt="{{ $pasta->title }}">
+    @endif
 </div>
 @endsection

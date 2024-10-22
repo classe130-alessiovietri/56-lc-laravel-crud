@@ -7,6 +7,12 @@
     Tutte le paste
 </h1>
 
+<div class="mb-4">
+    <a href="{{ route('pastas.create') }}" class="btn btn-success w-100">
+        + Aggiungi
+    </a>
+</div>
+
 <table class="table">
     <thead>
         <tr>
