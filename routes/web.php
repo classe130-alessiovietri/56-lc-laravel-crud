@@ -37,10 +37,10 @@ Se la mia tabella è 'my_resources':
 // Route::get('/pastas', [PastaController::class, 'index'])->name('pastas.index');
 // Route::get('/pastas/create', [PastaController::class, 'create'])->name('pastas.create');
 // Route::post('/pastas', [PastaController::class, 'store'])->name('pastas.store');
-// Route::get('/pastas/{id}', [PastaController::class, 'show'])->name('pastas.show');
-// Route::get('/pastas/{id}/edit', [PastaController::class, 'edit'])->name('pastas.edit');
-// Route::put('/pastas/{id}', [PastaController::class, 'update'])->name('pastas.update');
-// Route::delete('/pastas/{id}', [PastaController::class, 'destroy'])->name('pastas.destroy');
+// Route::get('/pastas/{pasta}', [PastaController::class, 'show'])->name('pastas.show');
+// Route::get('/pastas/{pasta}/edit', [PastaController::class, 'edit'])->name('pastas.edit');
+// Route::put('/pastas/{pasta}', [PastaController::class, 'update'])->name('pastas.update');
+// Route::delete('/pastas/{pasta}', [PastaController::class, 'destroy'])->name('pastas.destroy');
 
 Route::resource('pastas', PastaController::class);
 

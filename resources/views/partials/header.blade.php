@@ -1,13 +1,18 @@
 @php
     $links = [
         [
-            'url' => '/',
+            'url' => route('home'),
             'label' => 'Home',
             'active' => true,
         ],
         [
-            'url' => '/chi-siamo',
+            'url' => route('about'),
             'label' => 'Chi siamo',
+            'active' => true,
+        ],
+        [
+            'url' => route('pastas.index'),
+            'label' => 'Paste',
             'active' => true,
         ],
         [

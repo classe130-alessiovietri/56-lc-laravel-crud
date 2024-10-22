@@ -42,7 +42,10 @@ class PastaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // $pasta = Pasta::where('id', $id)->first();
+        $pasta = Pasta::find($id);
+
+        return view('pastas.show', compact('pasta'));
     }
 
     /**

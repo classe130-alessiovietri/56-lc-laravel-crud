@@ -22,7 +22,13 @@
                 <th scope="row">{{ $pasta->id }}</th>
                 <td>{{ $pasta->title }}</td>
                 <td>{{ $pasta->type }}</td>
-                <td>AZIONI</td>
+                <td>
+                    <a href="{{ route('pastas.show', ['pasta' => $pasta->id]) }}" class="btn btn-primary">
+                    {{-- <a href="{{ route('pastas.show', $pasta->id) }}" class="btn btn-primary">
+                    <a href="{{ route('pastas.show', $pasta) }}" class="btn btn-primary"> --}}
+                        Vedi
+                    </a>
+                </td>
             </tr>
         @endforeach
     </tbody>
