@@ -98,7 +98,7 @@ class PastaController extends Controller
     {
         $data = $request->all();
 
-        // $pasta->update($data);
+        $pasta->update($data);
 
         /* OPPURE */
 
