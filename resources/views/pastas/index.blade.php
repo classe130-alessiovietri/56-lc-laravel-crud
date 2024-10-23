@@ -37,6 +37,13 @@
                     <a href="{{ route('pastas.edit', ['pasta' => $pasta->id]) }}" class="btn btn-warning">
                         Modifica
                     </a>
+                    <form action="{{ route('pastas.destroy', ['pasta' => $pasta->id]) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            Elimina
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
