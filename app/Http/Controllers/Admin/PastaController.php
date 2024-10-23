@@ -70,18 +70,50 @@ class PastaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pasta $pasta)
     {
-        //
+        return view('pastas.edit', compact('pasta'));
     }
+    // public function edit(string $id)
+    // {
+    //     $pasta = Pasta::findOrFail($id);
+
+    //     return view('pastas.edit', compact('pasta'));
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pasta $pasta)
     {
-        //
+        $data = $request->all();
+
+        $pasta->src = $data['src'];
+        $pasta->title = $data['title'];
+        $pasta->type = $data['type'];
+        $pasta->cooking_time = $data['cooking_time'];
+        $pasta->weight = $data['weight'];
+        $pasta->description = $data['description'];
+        $pasta->save();
+
+        return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
     }
+    // public function update(Request $request, string $id)
+    // {
+    //     $pasta = Pasta::findOrFail($id);
+
+    //     $data = $request->all();
+
+    //     $pasta->src = $data['src'];
+    //     $pasta->title = $data['title'];
+    //     $pasta->type = $data['type'];
+    //     $pasta->cooking_time = $data['cooking_time'];
+    //     $pasta->weight = $data['weight'];
+    //     $pasta->description = $data['description'];
+    //     $pasta->save();
+
+    //     return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
+    // }
 
     /**
      * Remove the specified resource from storage.

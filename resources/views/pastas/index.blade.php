@@ -34,6 +34,9 @@
                     <a href="{{ route('pastas.show', $pasta) }}" class="btn btn-primary"> --}}
                         Vedi
                     </a>
+                    <a href="{{ route('pastas.edit', ['pasta' => $pasta->id]) }}" class="btn btn-warning">
+                        Modifica
+                    </a>
                 </td>
             </tr>
         @endforeach
