@@ -36,14 +36,24 @@ class PastaController extends Controller
     {
         $data = $request->all();
 
-        $pasta = new Pasta();
-        $pasta->src = $data['src'];
-        $pasta->title = $data['title'];
-        $pasta->type = $data['type'];
-        $pasta->cooking_time = $data['cooking_time'];
-        $pasta->weight = $data['weight'];
-        $pasta->description = $data['description'];
-        $pasta->save();
+        $pasta = Pasta::create($data);
+
+        /* OPPURE */
+
+        // $pasta = new Pasta();
+        // $pasta->fill($data);
+        // $pasta->save();
+
+        /* OPPURE */
+
+        // $pasta = new Pasta();
+        // $pasta->src = $data['src'];
+        // $pasta->title = $data['title'];
+        // $pasta->type = $data['type'];
+        // $pasta->cooking_time = $data['cooking_time'];
+        // $pasta->weight = $data['weight'];
+        // $pasta->description = $data['description'];
+        // $pasta->save();
 
         return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
         // return redirect()->route('pastas.index');
@@ -88,13 +98,22 @@ class PastaController extends Controller
     {
         $data = $request->all();
 
-        $pasta->src = $data['src'];
-        $pasta->title = $data['title'];
-        $pasta->type = $data['type'];
-        $pasta->cooking_time = $data['cooking_time'];
-        $pasta->weight = $data['weight'];
-        $pasta->description = $data['description'];
-        $pasta->save();
+        // $pasta->update($data);
+
+        /* OPPURE */
+
+        // $pasta->fill($data);
+        // $pasta->save();
+
+        /* OPPURE */
+
+        // $pasta->src = $data['src'];
+        // $pasta->title = $data['title'];
+        // $pasta->type = $data['type'];
+        // $pasta->cooking_time = $data['cooking_time'];
+        // $pasta->weight = $data['weight'];
+        // $pasta->description = $data['description'];
+        // $pasta->save();
 
         return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
     }

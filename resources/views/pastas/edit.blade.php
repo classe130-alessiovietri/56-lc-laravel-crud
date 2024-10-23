@@ -101,10 +101,14 @@
             placeholder="Inserisci una descrizione...">{{ $pasta->description }}</textarea>
     </div>
 
-    <div>
+    <div class="text-center">
         <button type="submit" class="btn btn-warning w-100">
             Aggiorna
         </button>
+
+        <a href="{{ route('pastas.show', ['pasta' => $pasta->id]) }}" class="btn btn-secondary mt-3">
+            Annulla
+        </a>
     </div>
 
 </form>

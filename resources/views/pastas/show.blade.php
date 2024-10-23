@@ -3,9 +3,15 @@
 @section('page-title', $pasta->title)
 
 @section('main-content')
-<h1>
-    {{ $pasta->title }}
-</h1>
+<div class="d-flex justify-content-between align-items-end mb-4">
+    <h1>
+        {{ $pasta->title }}
+    </h1>
+
+    <a href="{{ route('pastas.edit', ['pasta' => $pasta->id]) }}" class="btn btn-warning">
+        Modifica
+    </a>
+</div>
 
 <div class="card">
     <div class="card-body">

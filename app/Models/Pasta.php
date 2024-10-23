@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Pasta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'src',
+        'title',
+        'type',
+        'cooking_time',
+        'weight',
+        'description'
+    ];
 }
