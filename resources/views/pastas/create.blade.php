@@ -7,42 +7,111 @@
     Crea pasta
 </h1>
 
+@if ($errors->any())
+   <div class="alert alert-danger my-4">
+       <ul class="mb-0">
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+       </ul>
+   </div>
+@endif
+
 <form action="{{ route('pastas.store') }}" method="POST">
     @csrf
 
     <div class="mb-3">
         <label for="src" class="form-label">Src</label>
-        <input type="text" class="form-control" id="src" name="src" maxlength="1024" placeholder="Inserisci il valore di src...">
+        <input type="text" class="form-control @error('src') is-invalid @enderror" id="src" name="src" maxlength="1024" placeholder="Inserisci il valore di src..." value="{{ old('src') }}">
+
+        @if($errors->has('src'))
+            <div class="alert alert-danger mt-1">
+                ERRORI SRC:
+                <ul class="mb-0">
+                    @foreach($errors->get('src') as $key => $error)
+                        <li>
+                            {{ $error }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 
     <div class="mb-3">
         <label for="title" class="form-label">Titolo <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="title" name="title" required maxlength="64" placeholder="Inserisci il valore di titolo...">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required maxlength="64" placeholder="Inserisci il valore di titolo..." value="{{ old('title') }}">
+
+        @error('title')
+            <div class="alert alert-danger mt-1">
+                ERRORE TITOLO: {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div class="mb-3">
         <label for="type" class="form-label">Tipo <span class="text-danger">*</span></label>
-        <select class="form-select" id="type" name="type" required>
-            <option selected disabled>Seleziona un'opzione...</option>
-            <option value="lunga">Lunga</option>
-            <option value="corta">Corta</option>
-            <option value="cortissima">Cortissima</option>
+        <select class="form-select @error('type') is-invalid @enderror" id="type" name="type" required>
+            <option
+                @if (old('type') === null || old('type') == '')
+                    selected
+                @endif
+                disabled>Seleziona un'opzione...</option>
+            <option
+                @if (old('type') == 'lunga')
+                    selected
+                @endif
+                value="lunga">Lunga</option>
+            <option
+                @if (old('type') == 'corta')
+                    selected
+                @endif
+                value="corta">Corta</option>
+            <option
+                @if (old('type') == 'cortissima')
+                    selected
+                @endif
+                value="cortissima">Cortissima</option>
         </select>
+
+        @error('type')
+            <div class="alert alert-danger mt-1">
+                ERRORE TIPO: {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div class="mb-3">
         <label for="cooking_time" class="form-label">Tempo di cottura (min.)</label>
-        <input type="number" class="form-control" id="cooking_time" name="cooking_time" min="0" placeholder="Inserisci il valore di tempo di cottura...">
+        <input type="number" class="form-control @error('cooking_time') is-invalid @enderror" id="cooking_time" name="cooking_time" min="0" max="20" placeholder="Inserisci il valore di tempo di cottura..." value="{{ old('cooking_time') }}">
+
+        @error('cooking_time')
+            <div class="alert alert-danger mt-1">
+                ERRORE TEMPO DI COTTURA: {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div class="mb-3">
         <label for="weight" class="form-label">Peso (g) <span class="text-danger">*</span></label>
-        <input type="number" class="form-control" id="weight" name="weight" required min="0" max="5000" step="50" placeholder="Inserisci il valore di peso...">
+        <input type="number" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" required min="0" max="5000" step="50" placeholder="Inserisci il valore di peso..." value="{{ old('weight') }}">
+
+        @error('weight')
+            <div class="alert alert-danger mt-1">
+                ERRORE PESO: {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div class="mb-3">
         <label for="description" class="form-label">Descrizione <span class="text-danger">*</span></label>
-        <textarea class="form-control" id="description" name="description" rows="3" required maxlength="4096" placeholder="Inserisci una descrizione..."></textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3" required maxlength="4096" placeholder="Inserisci una descrizione...">{{ old('description') }}</textarea>
+
+        @error('description')
+            <div class="alert alert-danger mt-1">
+                ERRORE DESCRIZIONE: {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <div>

@@ -34,7 +34,30 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'src' => 'nullable|max:1024|url',
+            'title' => 'required|min:3|max:64',
+            'type' => 'required|min:3|max:16',
+            'cooking_time' => 'nullable|integer|min:1|max:20',
+            'weight' => 'required|integer|min:50|max:5000',
+            'description' => 'required|min:1|max:4096',
+        ], [
+            'src.url' => 'IL CAMPO SRC DEVE ESSERE UN LINK, OVVIAMENTE!!!',
+            'title.required' => 'Ti pare mai possibile che la pasta non abbia un titolo?'
+        ]);
+
         $data = $request->all();
+
+        /*
+            Controlli da fare:
+            - tutti i campi not null devono essere passati (title, type, weight, description)
+            - per i campi stringa, controllare se la lunghezza è entro i limiti (se sono obbligatori, altrimenti va bene anche null)
+            - per i campi numerici, controllare se il valore è entro i limiti
+        */
+        // if (!isset($data['title'])) {
+        //     /* Che faccio? Torno alla pagina precedente mostrando un errore SPECIFICO */
+        //     return 'Il campo titolo è obbligatorio';
+        // }
 
         $pasta = Pasta::create($data);
 
@@ -96,6 +119,18 @@ class PastaController extends Controller
      */
     public function update(Request $request, Pasta $pasta)
     {
+        $request->validate([
+            'src' => 'nullable|max:1024|url',
+            'title' => 'required|min:3|max:64',
+            'type' => 'required|min:3|max:16',
+            'cooking_time' => 'nullable|integer|min:1|max:20',
+            'weight' => 'required|integer|min:50|max:5000',
+            'description' => 'required|min:1|max:4096',
+        ], [
+            'src.url' => 'IL CAMPO SRC DEVE ESSERE UN LINK, OVVIAMENTE!!!',
+            'title.required' => 'Ti pare mai possibile che la pasta non abbia un titolo?'
+        ]);
+
         $data = $request->all();
 
         $pasta->update($data);
